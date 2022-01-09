@@ -44,25 +44,88 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
           Expanded(
             child: FutureBuilder(
                 future: getUser(),
-                builder: (context,AsyncSnapshot<List<User>> snapshot ){
-                  return ListView.builder(
-                      itemCount: 10,
-                      itemBuilder: (context, index){
-                        return ListTile(
-                          title: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(snapshot.data![index].name.toString()),
-                              Text(snapshot.data![index].email.toString()),
-                            ],
-                          ),
-                          subtitle: Text('ID:'+snapshot.data![index].id.toString()),
-                        );
-                      });
-                }),
+                builder: (context,AsyncSnapshot<List<User>> snapshot ) {
+                  if (snapshot.data == null) {
+                    return Center(child: const CircularProgressIndicator());
+                  }
+                  else {
+                    return ListView.builder(
+                        itemCount: 10,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(snapshot.data![index].name.toString()),
+                                Text(snapshot.data![index].email.toString()),
+                              ],
+                            ),
+                            subtitle: Text('ID:' +
+                                snapshot.data![index].id.toString()),
+                          );
+                        });
+                  }
+                }
+                  ),
           )
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(3, 37, 65, 1),
+              ),
+              child: Container(
+                height: 200,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 100,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50.0))
+                      ),
+                      child: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/220px-Google-flutter-logo.svg.png'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.one_k),
+              title: const Text('Страница авторизации'),
+              onTap: () {
+                setState(() {
+                  Navigator.of(context).pushNamed('/');
+                });
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.two_k),
+              title: const Text('Список пользователей'),
+              onTap: ()
+                {
+                  setState(() {Navigator.of(context).pushNamed('/main_screen');
+                });}
+
+            ),
+            const Divider(),
+            const Padding(
+              padding: EdgeInsets.only(left: 10.0),
+              child: Text('Профиль'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Настройки'),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
