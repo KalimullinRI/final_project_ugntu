@@ -1,3 +1,4 @@
+import 'package:final_project_ugntu/widgets/main_screen/main_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 class AuthWidget extends StatefulWidget {
@@ -64,7 +65,9 @@ class _FormWidgetState extends State<_FormWidget> {
     final password = _passwordTextController.text;
     if (login == '9123456789' && password == 'admin') {
       errorText = null;
-      print('open app');
+
+      Navigator.of(context).pushNamed('/main_screen');
+
     } else {
       errorText = 'Неверный логин или пароль';
     }
@@ -107,7 +110,7 @@ final errorText = this.errorText;
           padding: const EdgeInsets.only(bottom: 10.0),
           child: Text(errorText, style: TextStyle(fontSize: 16, color: Colors.red) ,),
         ),
-        TextButton(onPressed: _auth,
+        ElevatedButton(onPressed: _auth,
             child: Text('Войти'), style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Color.fromRGBO(3, 37, 65, 1)),
           foregroundColor: MaterialStateProperty.all(Colors.white),
