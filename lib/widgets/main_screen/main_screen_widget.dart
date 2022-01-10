@@ -26,7 +26,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
     if(response.statusCode == 200){
       for(Map i in data ){
-        User user = User(id: i ['id'], name: i['name'], email: i['email']);
+        User user = User(id: i ['id'], name: i['name'], email: i['email'], username: i['username'], phone: i['phone'], website: i['website']);
         userList.add(user);
       }
       return userList;
@@ -63,11 +63,14 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                             ),
                             subtitle: Text('ID:' +
                                 snapshot.data![index].id.toString()),
+                            onTap: (){
+                              Navigator.push(context, new MaterialPageRoute(builder: (context) => DetalPage(snapshot.data![index])));
+                            },
                           );
                         });
                   }
                 }
-                  ),
+            ),
           )
         ],
       ),
@@ -106,12 +109,12 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.two_k),
-              title: const Text('Список пользователей'),
-              onTap: ()
+                leading: const Icon(Icons.two_k),
+                title: const Text('Список пользователей'),
+                onTap: ()
                 {
                   setState(() {Navigator.of(context).pushNamed('/main_screen');
-                });}
+                  });}
 
             ),
             const Divider(),
@@ -135,22 +138,77 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
 
 
+class DetalPage extends StatelessWidget {
+
+    final User user;
+
+   DetalPage(this.user);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(user.name),
+              ),
+
+      body: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [Text('Username: '),
+                      Text( user.username),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text('E-mail: '),
+                      Text(user.email),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text('Phone: '),
+                      Text(user.phone),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text('Website: '),
+                      Text(user.website),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          }),
+
+    );
+  }
+}
+
+
 class User {
-  int? id;
-  String? name;
-  String? username;
-  String? email;
-  String? phone;
-  String? website;
+  final int id;
+  final String name;
+  final  String username;
+  final  String email;
+  final String phone;
+  final String website;
 
 
   User(
-      {this.id,
-        this.name,
-        this.username,
-        this.email,
-        this.phone,
-        this.website,
+      {   required this.id,
+         required this.name,
+        required this.username,
+        required this.email,
+        required this.phone,
+        required this.website,
       });
 
 }
