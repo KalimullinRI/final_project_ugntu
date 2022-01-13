@@ -7,6 +7,7 @@ import 'package:final_project_ugntu/MainScreen.dart';
 
 
 
+
 class DetailPage extends StatefulWidget {
   final User user;
   const DetailPage({Key? key, required this.user}) : super(key: key);
@@ -46,8 +47,7 @@ class _DetailPageState extends State<DetailPage> {
             child: Container(
               child: FutureBuilder(
                 future: fetchTodos(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Todo>> snapshot)  {
+                builder: (BuildContext context, AsyncSnapshot<List<Todo>>snapshot) {
                   if (snapshot.hasData) {
                     return ListView(
                       children: [
