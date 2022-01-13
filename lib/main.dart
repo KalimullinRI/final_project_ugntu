@@ -1,12 +1,17 @@
 import 'package:final_project_ugntu/widgets/auth/auth_widget.dart';
-import 'package:final_project_ugntu/widgets/main_screen/main_screen_widget.dart';
+import 'package:final_project_ugntu/widgets/main_screen/Users.dart';
+import 'widgets/main_screen/main_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp (MyApp());
+  runApp (const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  get user => null;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,11 +23,10 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => AuthWidget(),
-        '/main_screen': (context) => MainScreenWidget(
-        ),
+        '/main_screen': (context) => DetailPage(user: user),
 
-    },
-     initialRoute: '/',
+      },
+      initialRoute: '/',
     );
   }
 }

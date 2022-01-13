@@ -40,7 +40,7 @@ class _HeaderWidgetState extends State<_HeaderWidget> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-                _FormWidget(),
+          _FormWidget(),
         ],
       ),
     );
@@ -79,15 +79,15 @@ class _FormWidgetState extends State<_FormWidget> {
     final textStyle = const TextStyle(
         fontSize: 16, color: Colors.black);
     final textFielDecorator = const InputDecoration(
-        border: OutlineInputBorder(),
-         focusedBorder:OutlineInputBorder(
-        borderSide: const BorderSide(color: Color.fromRGBO(3, 37, 65, 1), width: 2.0)),
-        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        isCollapsed: true,
-        );
+      border: OutlineInputBorder(),
+      focusedBorder:OutlineInputBorder(
+          borderSide: const BorderSide(color: Color.fromRGBO(3, 37, 65, 1), width: 2.0)),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      isCollapsed: true,
+    );
 
 
-final errorText = this.errorText;
+    final errorText = this.errorText;
     return Column(
 
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,22 +104,22 @@ final errorText = this.errorText;
         TextField(
             controller: _passwordTextController,
             decoration: textFielDecorator,
-        obscureText: true),
+            obscureText: true),
         SizedBox(height: 50,),
         if(errorText !=null) Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: Text(errorText, style: TextStyle(fontSize: 16, color: Colors.red) ,),
         ),
         ElevatedButton(onPressed: _auth,
-            child: Text('Войти'), style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Color.fromRGBO(3, 37, 65, 1)),
-          foregroundColor: MaterialStateProperty.all(Colors.white),
-            textStyle: MaterialStateProperty.all
-              (TextStyle(fontSize: 16)),
-            padding: MaterialStateProperty.all
-              (EdgeInsets.symmetric(horizontal: 15, vertical: 8))
+          child: Text('Войти'), style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Color.fromRGBO(3, 37, 65, 1)),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              textStyle: MaterialStateProperty.all
+                (TextStyle(fontSize: 16)),
+              padding: MaterialStateProperty.all
+                (EdgeInsets.symmetric(horizontal: 15, vertical: 8))
           ),
-         ),
+        ),
       ],
     );
   }
