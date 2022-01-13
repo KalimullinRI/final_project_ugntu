@@ -1,6 +1,3 @@
-import 'package:final_project_ugntu/widgets/main_screen/main_screen_widget.dart';
-import 'main_screen_widget.dart';
-
 class User {
   final int id;
   final String name;

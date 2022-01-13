@@ -1,3 +1,4 @@
+import 'package:final_project_ugntu/MainScreen.dart';
 import 'package:final_project_ugntu/widgets/auth/auth_widget.dart';
 import 'package:final_project_ugntu/widgets/main_screen/Users.dart';
 import 'widgets/main_screen/main_screen_widget.dart';
@@ -10,7 +11,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  get user => null;
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => AuthWidget(),
-        '/main_screen': (context) => DetailPage(user: user),
+        '/main_screen': (context) => MainScreen(),
 
       },
       initialRoute: '/',
