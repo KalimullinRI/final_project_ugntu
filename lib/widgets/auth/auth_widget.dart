@@ -13,10 +13,10 @@ class _AuthWidgetState extends State<AuthWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Страница авторизации')),
+        title: const Center(child: Text('Страница авторизации')),
       ),
       body: ListView(
-        children: [
+        children: const [
           _HeaderWidget(),
         ],
       ),
@@ -39,7 +39,7 @@ class _HeaderWidgetState extends State<_HeaderWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
-        children: [
+        children: const [
           _FormWidget(),
         ],
       ),

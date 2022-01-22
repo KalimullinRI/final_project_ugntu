@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'Users.dart';
-import 'package:final_project_ugntu/MainScreen.dart';
+import 'package:http/http.dart';
+import 'users.dart';
+import 'package:final_project_ugntu/main_screen.dart';
+
 
 
 
@@ -18,6 +20,8 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+
+
   Future<List<Todo>> fetchTodos() async {
     var response = await http.get(Uri.parse(
         'https://jsonplaceholder.typicode.com/todos?userId=' +
@@ -28,10 +32,10 @@ class _DetailPageState extends State<DetailPage> {
           jsonDecode(response.body).map((user) => Todo.fromJson(user)));
     } else {
       throw Exception(
-          'Failed to load'
-      );
+          'Failed to load');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +49,9 @@ class _DetailPageState extends State<DetailPage> {
         children: [
           Expanded(
             child: Container(
-              child: FutureBuilder(
+              child: FutureBuilder<List<Todo>>(
                 future: fetchTodos(),
-                builder: (BuildContext context, AsyncSnapshot<List<Todo>>snapshot) {
+                builder: (BuildContext context, AsyncSnapshot<List<Todo>> snapshot) {
                   if (snapshot.hasData) {
                     return ListView(
                       children: [
@@ -85,10 +89,10 @@ class _DetailPageState extends State<DetailPage> {
                               trailing:
                               Checkbox(
                                 checkColor: Color(0xFF03203e),
-                                value: item.completed, onChanged: null,
+                                value: item.completed, onChanged: null),
                               ),
                             ),
-                          )
+
                       ],
                     );
                   }

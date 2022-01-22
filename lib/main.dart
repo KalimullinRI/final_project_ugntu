@@ -1,9 +1,7 @@
-import 'package:final_project_ugntu/MainScreen.dart';
+import 'package:final_project_ugntu/main_screen.dart';
 import 'package:final_project_ugntu/widgets/auth/auth_widget.dart';
-import 'package:final_project_ugntu/widgets/main_screen/Users.dart';
-import 'widgets/main_screen/main_screen_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project_ugntu/MainScreen.dart';
+
 
 void main() {
   runApp (const MyApp());
@@ -24,8 +22,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/': (context) => AuthWidget(),
-        '/main_screen': (context) => MainScreen(),
+        '/': (context) => const AuthWidget(),
+        '/main_screen': (context) => const MainScreen(),
 
       },
       initialRoute: '/',
