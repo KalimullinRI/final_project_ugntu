@@ -92,20 +92,23 @@ class _FormWidgetState extends State<_FormWidget> {
 
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
         Text('Введите 10 цифр номера телефона', style: textStyle),
-        SizedBox(height: 5,),
+        const SizedBox(height: 5,),
         TextField(
             controller: _loginTextController,
-            decoration: textFielDecorator),
-        SizedBox(height: 25,),
+            decoration: textFielDecorator,
+            keyboardType:
+            TextInputType.phone,
+        ),
+        const SizedBox(height: 25,),
         Text('Введите пароль', style: textStyle),
-        SizedBox(height: 5,),
+        const SizedBox(height: 5,),
         TextField(
             controller: _passwordTextController,
             decoration: textFielDecorator,
             obscureText: true),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
         if(errorText !=null) Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: Text(errorText, style: TextStyle(fontSize: 16, color: Colors.red) ,),

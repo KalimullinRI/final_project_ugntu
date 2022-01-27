@@ -89,13 +89,11 @@ class Todo{
   final String title;
   final bool completed;
 
-  Todo(
-  {
+  Todo ({
     required this.userId,
     required this.id,
     required this.title,
-    required this.completed
-});
+    required this.completed});
 
   factory Todo.fromJson(Map<String, dynamic>json) => Todo(
     userId: json['userId'],

@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'users.dart';
-import 'package:final_project_ugntu/main_screen.dart';
+
 
 
 
@@ -23,8 +22,8 @@ class _DetailPageState extends State<DetailPage> {
 
 
   Future<List<Todo>> fetchTodos() async {
-    var response = await http.get(Uri.parse(
-        'https://jsonplaceholder.typicode.com/todos?userId=' +
+    var response = await http
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/todos?userId=' +
             widget.user.id.toString()));
 
     if (response.statusCode == 200) {
@@ -42,14 +41,14 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Задачи ${widget.user.name}'),
+        title: Text('Подробнее о ${widget.user.name}'),
       ),
 
       body: Column(
         children: [
           Expanded(
             child: Container(
-              child: FutureBuilder<List<Todo>>(
+              child: FutureBuilder(
                 future: fetchTodos(),
                 builder: (BuildContext context, AsyncSnapshot<List<Todo>> snapshot) {
                   if (snapshot.hasData) {
@@ -58,9 +57,8 @@ class _DetailPageState extends State<DetailPage> {
                         Container(
                           padding: const EdgeInsets.all(10),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text('Подробнее о пользователе: '),
                               const SizedBox(height: 5,),
                               Text('Полное имя: ${widget.user.name}' '${widget
                                   .user.username}'),
@@ -80,7 +78,7 @@ class _DetailPageState extends State<DetailPage> {
                                 fontSize: 16, fontWeight: FontWeight.bold),),
                           ),
                         ),
-                          for (var item in snapshot.data!)
+                        for (var item in snapshot.data!)
                           Card(
                             elevation: 1,
                             child: ListTile(
@@ -88,16 +86,21 @@ class _DetailPageState extends State<DetailPage> {
                               title: Text(item.title),
                               trailing:
                               Checkbox(
-                                checkColor: Color(0xFF03203e),
-                                value: item.completed, onChanged: null),
-                              ),
+                                  checkColor: Color(0xFF03203e),
+                                  value: item.completed, onChanged: null),
                             ),
+                          ),
 
                       ],
                     );
+                  } else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   }
-                  },
-              ),
+                } ),
             ),
           )
         ],
