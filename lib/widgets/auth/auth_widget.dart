@@ -1,4 +1,3 @@
-import 'package:final_project_ugntu/widgets/main_screen/main_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 class AuthWidget extends StatefulWidget {
